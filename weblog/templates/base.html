@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--CSS -->
+    <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'bootstrap/css/bootstrap-theme.min.css' %}" rel="stylesheet">
+
+     <link href="{% static 'css/signin.css' %}" rel="stylesheet">
+
+    {% block maincss %}
+       <p>original css</p>
+    {% endblock %}
+
+    <title>{{ title }}</title>
+
+</head>
+<body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">WeBlog</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="/admin/">Admin</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+            <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">欢迎您 {{ user.username }}</a></li>
+            <li><a href="{% url 'logout' %}">logout</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+
+    <div class="container">
+        {% block mainbody %}
+           <p>original body</p>
+        {% endblock %}
+    </div>
+
+    <hr>
+    <hr>
+    <hr>
+    <footer  class="container-fluid foot-wrap">
+         <div class="container">
+             <p>&copy; WeBlog NingJian 2017</p>
+         </div>
+    </footer>
+
+
+    <!--JavaScript plugins) -->
+     <script src="{% static 'bootstrap/js/jquery.min.js' %}"></script>
+     <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+    {% block mainjs %}
+       <p>original js</p>
+    {% endblock %}
+</body>
+</html>

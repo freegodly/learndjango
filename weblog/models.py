@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User,Group
 from django.contrib import admin
+from ckeditor.fields import RichTextField
 
 # Create your models here.
 
@@ -17,7 +18,7 @@ class Blog(models.Model):
     caption = models.CharField(max_length=50)
     author = models.ForeignKey(User)
     tags = models.ManyToManyField(Tag, blank=True)
-    content = models.TextField()
+    content = RichTextField("正文")
     publish_time = models.DateTimeField(auto_now_add=True)
     update_time = models.DateTimeField(auto_now=True)
 

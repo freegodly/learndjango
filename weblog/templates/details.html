@@ -1,0 +1,37 @@
+
+{% extends "base.html" %}
+
+{% block maincss %}
+{% endblock %}
+
+
+{% block mainbody %}
+  <div class="row row-offcanvas row-offcanvas-right">
+
+        <div class="col-xs-12 col-sm-9">
+          <p class="pull-right visible-xs">
+            <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
+          </p>
+
+           <div class="col-xs-11 col-lg-11">
+               <div class="page-header">
+                  <h1>{{ blog.caption }} <small>author:{{ blog.author }}</small></h1>
+                   <h5>{{ blog.publish_time }}</h5>
+               </div>
+             <p>{{ blog.content |safe }} </p>
+           </div><!--/.col-xs-6.col-lg-4-->
+
+        </div><!--/.col-xs-12.col-sm-9-->
+
+
+      <hr>
+  </div>
+
+
+{% endblock %}
+
+
+{% block mainjs %}
+    <script type="text/javascript" src="/static/ckeditor/ckeditor/ckeditor.js"></script>
+{% endblock %}
+

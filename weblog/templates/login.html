@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--CSS -->
+    <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'bootstrap/css/bootstrap-theme.min.css' %}" rel="stylesheet">
+
+     <link href="{% static 'css/signin.css' %}" rel="stylesheet">
+
+
+    <title>{{ title }}</title>
+
+</head>
+<body>
+
+    <div class="container">
+
+      <form class="form-signin" >
+          {% csrf_token %}
+        <h2 class="form-signin-heading">WeBlog sign in</h2>
+        <label for="inputName" class="sr-only">User Name</label>
+        <input type="text" id="inputName" class="form-control" placeholder="Name" required autofocus>
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" value="remember-me"> Remember me
+          </label>
+        </div>
+        <button id="login" class="btn btn-lg btn-primary btn-block" type="button">Sign in</button>
+      </form>
+
+    </div> <!-- /container -->
+
+
+    <!--JavaScript plugins) -->
+     <script src="{% static 'bootstrap/js/jquery.min.js' %}"></script>
+     <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+     <script src="{% static 'js/safe.js' %}"></script>
+
+    <script>
+        $(function(){
+            $('#login').click(function(){
+                 $.ajax({
+                     type: "POST",
+                     url: "{% url 'login' %}",
+                     data: {username:$("#inputName").val(), password:$("#inputPassword").val()},
+                     dataType: "json",
+                     success: function(data){
+                                 if(data.login){
+                                    window.location.href = "{% url 'home' %}";
+                                 }else{
+                                    alert("错误的用户名密码！")
+                                 }
+
+                              }
+                 });
+            });
+        });
+    </script>
+
+</body>
+</html>
